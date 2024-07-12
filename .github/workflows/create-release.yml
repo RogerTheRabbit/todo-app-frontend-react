@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
       - name: Create .env file
-        run: echo "VITE_BASE_API_PATH==${{ env.VITE_BASE_API_PATH }}" >> .env
+        run: echo "VITE_BASE_API_PATH=${{ env.VITE_BASE_API_PATH }}" >> .env
       - name: Build
         run: npm install && npm run build
       - name: Create zip file
