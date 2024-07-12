@@ -1,0 +1,25 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  runs-on: ubuntu-latest
+  permissions:
+    contents: write
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - name: Create .env file
+      run: echo "VITE_BASE_API_PATH==${{ env.VITE_BASE_API_PATH }}" >> .env
+    - name: Build
+      run: npm install && npm run build
+    - name: Create zip file
+      run: tar -czf release.tar.gz ./dist
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
