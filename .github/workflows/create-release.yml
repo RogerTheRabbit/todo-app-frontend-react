@@ -23,4 +23,4 @@ jobs:
         run: tar -czf release.tar.gz ./dist
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "release.tar.gz,foo/*.txt"
+          artifacts: "release.tar.gz"
