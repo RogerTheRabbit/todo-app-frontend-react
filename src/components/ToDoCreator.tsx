@@ -10,12 +10,11 @@ function ToDoCreator(props: any) {
     fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`, {
       method: "POST",
       body: JSON.stringify({ title: title, description: description }),
-    })
-      .then(() => {
-        setTitle("");
-        setDescription("");
-        props.fetchTodos()
-      })
+    }).then(() => {
+      setTitle("");
+      setDescription("");
+      props.fetchTodos();
+    });
   };
 
   return (
@@ -33,7 +32,7 @@ function ToDoCreator(props: any) {
         className="bg-slate-700 rounded p-1 grow"
       />
       <button
-        className="bg-slate-700 rounded p-1 grow"
+        className="bg-slate-700 rounded p-1 grow bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"
         onClick={() => createTodo(title, description)}
       >
         add

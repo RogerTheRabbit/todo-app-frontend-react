@@ -20,7 +20,7 @@ function ToDo(props: any) {
           deleteToDo(props.id);
         }}
       >
-        <TrashIcon className="h-5 w-5 text-slate-100 hover:fill-slate-100" />
+        <TrashIcon className="h-5 w-5 text-slate-500 hover:text-red-400" />
       </button>
     </div>
   );
