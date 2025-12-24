@@ -1,11 +1,21 @@
 import PropTypes from "prop-types";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, BellIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 function ToDo(props: any) {
   const deleteToDo = (id: number) => {
     fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos/${id}`, {
       method: "DELETE",
+    }).then(() => props.fetchTodos());
+  };
+
+  const setReminder = (id: number) => {
+    fetch(`${import.meta.env.VITE_BASE_API_PATH}/reminders`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: id,
+        username: import.meta.env.VITE_DEFAULT_REMINDER_USERNAME,
+      }),
     }).then(() => props.fetchTodos());
   };
 
@@ -55,6 +65,17 @@ function ToDo(props: any) {
       >
         <TrashIcon className="h-5 w-5 text-slate-500 hover:text-red-400" />
       </button>
+      <button
+        onClick={() => {
+          setReminder(props.id);
+        }}
+      >
+        <BellIcon
+          className={`h-5 w-5 ${
+            props.username === null ? "text-slate-500" : "text-violet-500"
+          } `}
+        />
+      </button>
     </div>
   );
 }
@@ -63,6 +84,7 @@ ToDo.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
+  username: PropTypes.string || null,
   fetchTodos: PropTypes.func,
 };
 

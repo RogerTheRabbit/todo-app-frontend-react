@@ -30,6 +30,7 @@ function ToDoContainer() {
             id={todo.id}
             title={todo.title}
             description={todo.description}
+            username={todo.username}
             fetchTodos={fetchTodos}
           />
         ))}
