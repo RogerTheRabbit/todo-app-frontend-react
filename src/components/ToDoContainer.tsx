@@ -19,6 +19,11 @@ function ToDoContainer() {
 
   useEffect(() => {
     fetchTodos();
+    const todoPoller = setInterval(() => fetchTodos(), 5000);
+
+    return () => {
+      clearInterval(todoPoller);
+    };
   }, []);
 
   return (
