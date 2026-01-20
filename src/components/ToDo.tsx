@@ -72,7 +72,9 @@ function ToDo(props: any) {
       >
         <BellIcon
           className={`h-5 w-5 ${
-            props.username === null ? "text-slate-500" : "text-violet-500"
+            props.username === null
+              ? "text-slate-500"
+              : "fill-violet-500 text-violet-400"
           } `}
         />
       </button>
