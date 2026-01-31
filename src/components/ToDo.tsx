@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
 import { TrashIcon, BellIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { SecureFetch } from "./auth/SecureFetch";
 
 function ToDo(props: any) {
   const deleteToDo = (id: number) => {
-    fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos/${id}`, {
+    SecureFetch(`${import.meta.env.VITE_BASE_API_PATH}/todos/${id}`, {
       method: "DELETE",
     }).then(() => props.fetchTodos());
   };
 
   const setReminder = (id: number) => {
-    fetch(`${import.meta.env.VITE_BASE_API_PATH}/reminders`, {
+    SecureFetch(`${import.meta.env.VITE_BASE_API_PATH}/reminders`, {
       method: "POST",
       body: JSON.stringify({
         id: id,
@@ -26,7 +27,7 @@ function ToDo(props: any) {
     if (props.title === e.currentTarget.value) {
       return;
     }
-    fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`, {
+    SecureFetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`, {
       method: "PUT",
       body: JSON.stringify({
         id: props.id,

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { SecureFetch } from "./auth/SecureFetch";
 
 function ToDoCreator(props: any) {
   const [title, setTitle] = useState("");
@@ -7,7 +8,7 @@ function ToDoCreator(props: any) {
 
   const createTodo = (title: string, description: string) => {
     console.log("Creating todo:", title, description);
-    fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`, {
+    SecureFetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`, {
       method: "POST",
       body: JSON.stringify({ title: title, description: description }),
     }).then(() => {

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
 import ToDoCreator from "./ToDoCreator";
+import { SecureFetch } from "./auth/SecureFetch";
 
 function ToDoContainer() {
   const [todos, setTodos] = useState<any[]>([]);
 
   const fetchTodos = () => {
-    fetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`)
+    SecureFetch(`${import.meta.env.VITE_BASE_API_PATH}/todos`)
       .then((resp) => resp.json())
       .then((fetchedTodos) => {
         let newTodos: any[] = [];
